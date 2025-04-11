@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_main">
+
+    <!-- Bọc các thành phần khác trong LinearLayout và áp dụng padding -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottomNavigation"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- Tiêu đề -->
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quản lý Sách"
+            android:fontFamily="@font/poppins_bold"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center_horizontal" />
+
+        <!-- NestedScrollView để cuộn toàn bộ nội dung -->
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- RecyclerView hiển thị danh sách sách -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvBooks"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:clipToPadding="false"
+                    android:scrollbars="vertical"
+                    android:nestedScrollingEnabled="false" />
+
+                <!-- TextView hiển thị thông báo khi không có sách -->
+                <TextView
+                    android:id="@+id/tvNoBooks"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Không có sách nào trong cơ sở dữ liệu. Vui lòng thêm sách mới!"
+                    android:textSize="16sp"
+                    android:textColor="#FF0000"
+                    android:gravity="center"
+                    android:layout_marginBottom="20dp"
+                    android:visibility="gone" />
+
+                <!-- Trường nhập liệu để thêm/sửa sách -->
+                <LinearLayout
+                    android:id="@+id/inputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/etBookTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Tên sách"
+                        android:background="@drawable/search_background_rounded"
+                        android:padding="10dp"
+                        android:textColor="#000000"
+                        android:textColorHint="#666666"
+                        android:layout_marginBottom="10dp" />
+
+                    <EditText
+                        android:id="@+id/etBookAuthor"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Tác giả"
+                        android:background="@drawable/search_background_rounded"
+                        android:padding="10dp"
+                        android:textColor="#000000"
+                        android:textColorHint="#666666"
+                        android:layout_marginBottom="10dp" />
+
+                    <EditText
+                        android:id="@+id/etBookGenre"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Thể loại"
+                        android:background="@drawable/search_background_rounded"
+                        android:padding="10dp"
+                        android:textColor="#000000"
+                        android:textColorHint="#666666"
+                        android:layout_marginBottom="10dp" />
+
+                    <EditText
+                        android:id="@+id/etBookPrice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Giá (VNĐ)"
+                        android:inputType="numberDecimal"
+                        android:background="@drawable/search_background_rounded"
+                        android:padding="10dp"
+                        android:textColor="#000000"
+                        android:textColorHint="#666666"
+                        android:layout_marginBottom="10dp" />
+
+                    <EditText
+                        android:id="@+id/etBookImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Tên file ảnh (ví dụ: book.jpg)"
+                        android:background="@drawable/search_background_rounded"
+                        android:padding="10dp"
+                        android:textColor="#000000"
+                        android:textColorHint="#666666"
+                        android:layout_marginBottom="20dp" />
+                </LinearLayout>
+
+                <!-- Các nút chức năng -->
+                <LinearLayout
+                    android:id="@+id/buttonLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginBottom="20dp">
+
+                    <Button
+                        android:id="@+id/btnAddBook"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Thêm"
+                        android:backgroundTint="#73FF44"
+                        android:textColor="#000000"
+                        android:padding="10dp"
+                        android:layout_marginEnd="10dp" />
+
+                    <Button
+                        android:id="@+id/btnUpdateBook"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sửa"
+                        android:backgroundTint="#FF9800"
+                        android:textColor="#000000"
+                        android:padding="10dp"
+                        android:layout_marginEnd="10dp" />
+
+                    <Button
+                        android:id="@+id/btnDeleteBook"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Xóa"
+                        android:backgroundTint="#F44336"
+                        android:textColor="#000000"
+                        android:padding="10dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+
+    <!-- Bottom Navigation -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#FFFFFF"
+        android:elevation="8dp"
+        app:itemIconTint="@drawable/bottom_nav_color"
+        app:itemTextColor="@drawable/bottom_nav_color"
+        app:menu="@menu/bottom_nav_menu" />
+
+</RelativeLayout>
